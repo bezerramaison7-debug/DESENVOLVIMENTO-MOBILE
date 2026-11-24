@@ -74,6 +74,13 @@ jobs:
                 xdotool mousemove 680 581 mousedown 1 sleep 0.2 mouseup 1
                 sleep 2
               fi
+              convert capturas-ide/estado.png -crop 600x40+430+365 +repage -colorspace gray -negate /tmp/studio-trust.png
+              title=$(tesseract /tmp/studio-trust.png stdout --psm 7 2>/dev/null)
+              printf "%s\n" "$title" >> capturas-ide/dialogos.txt
+              if grep -Eqi "Trust and Open|Open Project.*android" <<< "$title"; then
+                xdotool mousemove 677 517 mousedown 1 sleep 0.2 mouseup 1
+                sleep 3
+              fi
               if grep -qi "Trust Project" <<< "$screen"; then
                 tesseract /tmp/studio-dialog.png stdout --psm 6 tsv 2>/dev/null |
                   awk -F "\t" '"'"'$12 == "Trust" {x=$7+$9/2;y=$8+$10/2;s=$5} $5==s && $12=="Project" && x {print int(x),int(y);x=0}'"'"' | tail -1 |
