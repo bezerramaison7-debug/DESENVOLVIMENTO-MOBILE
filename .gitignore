@@ -1,0 +1,6 @@
+**/.gradle/
+**/.idea/
+**/build/
+**/.dart_tool/
+**/local.properties
+**/__pycache__/

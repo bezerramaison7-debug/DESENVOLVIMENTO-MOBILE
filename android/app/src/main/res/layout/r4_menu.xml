@@ -1,0 +1,67 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="@string/menu_title"
+            style="@style/Heading" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_cadastro"
+            android:text="@string/menu_cadastro"
+            android:drawableStart="@android:drawable/ic_menu_add"
+            android:drawablePadding="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="start|center_vertical"
+            style="@style/Action" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_consultar"
+            android:text="@string/menu_consultar"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="start|center_vertical"
+            style="@style/Action" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_config"
+            android:text="@string/menu_config"
+            android:drawableStart="@android:drawable/ic_menu_preferences"
+            android:drawablePadding="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="start|center_vertical"
+            style="@style/Action" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/menu_exit"
+            android:text="@string/menu_exit"
+            android:drawableStart="@android:drawable/ic_menu_close_clear_cancel"
+            android:drawablePadding="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="start|center_vertical"
+            style="@style/Action" />
+    </LinearLayout>
+</ScrollView>
