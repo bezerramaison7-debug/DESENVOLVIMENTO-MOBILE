@@ -14,6 +14,10 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.10.2'
@@ -44,6 +48,7 @@ jobs:
           export GRADLE_HOME
           GRADLE_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v gradle)")")")"
           printf 'sdk.dir=%s\n' "$ANDROID_HOME" > android/local.properties
+          printf 'org.gradle.java.home=%s\n' "$JAVA_HOME" > android/gradle.properties
           cat > android/.idea-gradle-settings <<'XML'
           <project version="4">
             <component name="GradleSettings">
@@ -64,7 +69,8 @@ jobs:
             "$STUDIO_BIN" "$GITHUB_WORKSPACE/android" "$GITHUB_WORKSPACE/android/app/src/main/java/br/edu/labmobile/MainActivity.java" > capturas-ide/abertura.log 2>&1 &
             studio_pid=$!
             trap "kill $studio_pid 2>/dev/null || true" EXIT
-            for n in $(seq 1 14); do
+            tree_opened=0
+            for n in $(seq 1 15); do
               sleep 5
               import -window root capturas-ide/estado.png
               convert capturas-ide/estado.png -crop 660x410+390+245 +repage -colorspace gray -negate /tmp/studio-dialog.png
@@ -91,6 +97,10 @@ jobs:
               fi
               if window=$(xdotool search --onlyvisible --name "LaboratorioMobile|MainActivity.java" 2>/dev/null | tail -1) && [ -n "$window" ]; then
                 xdotool windowsize "$window" 1420 860 windowmove "$window" 6 8 || true
+                if [ "$tree_opened" -eq 0 ]; then
+                  xdotool windowfocus "$window" mousemove 26 69 click 1 || true
+                  tree_opened=1
+                fi
               fi
               import -window root "capturas-ide/ide-$n.png"
               xdotool search --onlyvisible --name "." getwindowname %@ >> capturas-ide/janelas.txt || true
