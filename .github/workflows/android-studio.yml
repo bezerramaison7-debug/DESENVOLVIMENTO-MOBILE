@@ -67,15 +67,17 @@ jobs:
             for n in $(seq 1 14); do
               sleep 5
               import -window root capturas-ide/estado.png
-              screen=$(tesseract capturas-ide/estado.png stdout 2>/dev/null)
+              convert capturas-ide/estado.png -crop 660x410+390+245 +repage -colorspace gray -negate /tmp/studio-dialog.png
+              screen=$(tesseract /tmp/studio-dialog.png stdout --psm 6 2>/dev/null)
+              printf "%s\n" "$screen" >> capturas-ide/dialogos.txt
               if grep -qi "Help improve Android Studio" <<< "$screen"; then
-                xdotool mousemove 680 581 click 1
+                xdotool mousemove 680 581 mousedown 1 sleep 0.2 mouseup 1
                 sleep 2
               fi
               if grep -qi "Trust Project" <<< "$screen"; then
-                tesseract capturas-ide/estado.png stdout tsv 2>/dev/null |
+                tesseract /tmp/studio-dialog.png stdout --psm 6 tsv 2>/dev/null |
                   awk -F "\t" '"'"'$12 == "Trust" {x=$7+$9/2;y=$8+$10/2;s=$5} $5==s && $12=="Project" && x {print int(x),int(y);x=0}'"'"' | tail -1 |
-                  while read -r x y; do xdotool mousemove "$x" "$y" click 1; done
+                  while read -r x y; do xdotool mousemove "$((x+390))" "$((y+245))" click 1; done
               fi
               if window=$(xdotool search --onlyvisible --name "Trust (and Open|Project)" 2>/dev/null | tail -1) && [ -n "$window" ]; then
                 xdotool windowfocus --sync "$window" key Return || true
