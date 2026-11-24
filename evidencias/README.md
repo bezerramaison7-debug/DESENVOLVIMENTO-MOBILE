@@ -17,3 +17,6 @@ Os trajetos simulados usaram dados fictícios:
 | Retorno e correção | Recuperou um nome salvo após encerrar o processo, corrigiu o formulário e percorreu as faixas de senha. |
 
 Consulte o [README do projeto](../README.md) para reproduzir os testes.
+## Android Studio
+
+A [captura do projeto na IDE](capturas/r1-android-studio.png) mostra o módulo app e a configuração reconhecida após fixar o JDK 17. O [registro da captura](https://github.com/bezerramaison7-debug/DESENVOLVIMENTO-MOBILE/actions/runs/45461853952) é separado do job que validou o aplicativo no emulador.
