@@ -1,0 +1,6 @@
+R1 PASS | abrir aplicativo | título alterado exibido
+R2 PASS | vazio e preenchido | aviso, confirmação e senha mascarada
+R4 PASS | três destinos, voltar e sair | navegação e encerramento
+R5 PASS | zero opções, duas e desmarcação | lista corresponde ao estado
+R6 PASS | vazio, salvar, force-stop, reabrir | mesmo nome recuperado no campo
+R7 PASS | vazio, e-mail inválido, 5 e 6 caracteres | três avisos e confirmação

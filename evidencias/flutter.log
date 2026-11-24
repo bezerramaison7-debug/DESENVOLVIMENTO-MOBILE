@@ -1,0 +1,9 @@
+GitHub Actions 45449536301 · flutter · revisão bf63ecc0bc40eb2e702b65a2540dc32301f15d9c
+No issues found! (ran in 10.0s)
+00:00 +0: R3 apresenta campos e dá boas-vindas com entrada válida
+00:00 +1: R3 solicita e-mail válido e senha quando faltam dados
+00:00 +2: R8 classifica vazio e fronteiras de comprimento
+00:00 +3: R8 atualiza a indicação ao editar e limpar
+00:01 +4: All tests passed!
+✓ Built build/roteiro3
+✓ Built build/roteiro8
